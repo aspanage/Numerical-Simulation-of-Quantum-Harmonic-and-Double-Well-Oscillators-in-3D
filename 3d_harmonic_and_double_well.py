@@ -12,7 +12,7 @@ x = np.linspace(x_min, x_max, N)
 dx = x[1] - x[0]
 
 # Choose potential: 'harmonic' or 'double_well'
-potential_type = 'double_well'
+potential_type = 'harmonic'
 
 # =========================
 # 1D Laplacian
