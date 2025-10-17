@@ -6,13 +6,13 @@ from scipy.sparse.linalg import eigsh
 # =========================
 # Parameters
 # =========================
-N = 20  # grid points per dimension (keep small to avoid memory issues)
+N = 40  # grid points per dimension
 x_min, x_max = -5, 5
 x = np.linspace(x_min, x_max, N)
 dx = x[1] - x[0]
 
 # Choose potential: 'harmonic' or 'double_well'
-potential_type = 'harmonic'
+potential_type = 'double_well'
 
 # =========================
 # 1D Laplacian
@@ -49,7 +49,8 @@ H = -0.5*L + V_matrix
 # Solve eigenvalues/eigenvectors
 # =========================
 num_states = 4  # lowest 4 eigenstates
-energies, wavefuncs = eigsh(H, k=num_states, which='SM')
+energies, wavefuncs = eigsh(H, k=num_states, sigma=0.0, which='LM')
+
 
 # Print energies
 print(f"Lowest {num_states} energies:", energies)
@@ -74,4 +75,3 @@ for i in range(num_states):
     plt.ylabel('y')
     plt.colorbar(label='ψ(x,y,z=0)')
     plt.show()
-
